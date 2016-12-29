@@ -1,0 +1,133 @@
+
+EDGETRAK
+
+Developed by Min Li, Yusuf Akgul and Chandra Kambhamettu, 
+ Department of EECIS, University of Delaware
+ for  Maureen Stone and the 
+Vocal Tract Visualization Lab, University of Maryland Dental School.
+  August 2004.
+
+
+
+PROGRAM INSTRUCTIONS
+
+General Information:
+
+* This program measures a sequence of .jpg (or .ras, .tif)  images and expects them to have sequential numbers in the file names.
+* Notations in CAPITAL LETTERS refer to menu titles and menu items.
+* Memory limit is roughly 80 frames at a time (if you have more, EdgeTrak  will crash during optimization).
+* Save a palate trace, to superimpose on subsequent image files, as a .pal file. 
+* Export all or a subset of the contours in a .ts file as a .con file.
+* See end for additional information.
+
+
+I.  To start the program:
+
+I.1. Open the EdgeTrak program
+
+I.2. Select FILE/LOAD IMAGES
+
+I.3. In the new window:
+- click on 'get sample'.
+- select any one of the jpg files in the sequence you want to use and click open.
+- change the numbers at the end of the file (ex: 001) to ### in the file template field.
+- click OK.
+- type in start & end frame #'s (predetermined by user).
+
+I.4. Select CONFIGURE/INTERESTING AREA & SCALING MARKS 
+- click anywhere in the green box to drag it and adjust its size by dragging the corners.
+- if you click in the box without selecting 'configure', you will select a point (red dot), which must be erased (middle button).
+- click 'next' and look at all images to make sure all edges are within the box. The play button works in this mode.
+- click 'done''.
+
+I.5. Select OPTIMIZE/IMAGE GRADIENTS  
+- Click OK.
+
+I.6. Select CONFIGURE/OPTIMIZATION PARAMETERS (if tracking is not accurate)
+- Reduce smoothness to increase image weight to better track the edges, or increase smoothness to give more weight to model is image is unclear. (image weight + smoothness model trade-off).
+- Click OK
+
+I.7. Select FILE/INIT BY CLICK 
+- With left mouse button place 5-6 points along the lower edge of the upper tongue surface (white line), from left to right.
+- click 'done'
+I.8. Select OPTIMIZE/OPTIMIZE ONE FRAME ((tracks surface)
+- Right click to delete a point.
+- Reoptimize if neccessary.
+- You must optimize one frame to enable the 'whole sequence' optimization.
+- Once you like the curve, move on to step 9)
+
+I.9. Select OPTIMIZE/OPTIMIZE WHOLE SEQUENCE and click OK.
+- This step can also be used to correct errors made by the automatic tracker. A subset of frames may be optimized based on the immediately preceding one. If doing this step for a second time, make the start frame one frame after the one you're satisfied with.
+- This process can be stopped at any point if the tracking seems to be going badly, however, if it not too askew, the tracking sometimes improves later in the sequence.
+
+
+II.  To Edit Contours:  
+ 
+II.1. To Edit a Sequence:
+
+EDIT/CUT CONTOUR
+- Use the left mouse button to cut everything to the left of selected point.
+- Use the right mouse button to cut everything to the right of selected point.
+- Do this for each frame as needed, and optimize a sub-sequence if it looks like the new shape carries through.  Be sure to have the 'good' contour active and the 'start' frame as the next frame.
+- click 'done' when satisfied.
+- NB. If you don't click done, the next time you click the left button to select a point, you will delete a section instead! There is a fast learning curve for this.
+
+II.2. To Edit a single frame:
+
+- Use middle button to delete a single point
+- Use left button to add a single point
+- Then optimize one frame if you'd like, or leave frame as is for saving.
+VIEW/SNAXELS or VIEW/IMAGES
+- Allows you to toggle snaxels and ultrasound images on and off.
+VIEW/INTERESTING AREA
+- Allows you to toggle the green interesting area box on and off.
+
+II.3. When all else fails:
+
+- Manually select good points and delete bad ones and save without optimizing.  It doesn't matter if some contours are optimized and others are not.  See below for format of .ts file. 
+
+
+III. To save and export contours from a .ts file:
+
+III.1. Select  FILE/SAVE TS FILE AS (filename.ts)
+- NB: you need at least 2 frames in a .ts and a .con file.  If you only want one contour, copy and paste it onto the second image and save. 
+
+III.2. Select FILE/EXPORT CONTOURS (filename.con)
+- insert scale constant, e.g.,  0.295 (default setting)*
+- This number will convert pixels to mm.
+- enter the frame numbers whose contours you want to export.
+- click OK.
+
+* Note on scaling constant.  Using a program such as Imaje J, left click two consecutive lines (1cm) on the Ultrasound image scale.  All ultrasound machines put a cm scale somewhere on the image.  Note how many pixels are between the 2 lines (try to keep the x values fairly constant, and only subtract the y values).  This will be the scaling factor to convert pixels to cm. Multiply by 10 and use this in section 13.  The value needs to be calculated once for each depth setting used.
+
+
+IV. To save and export a palate contour:
+
+Track the contour of the palate from a swallow at the point of maximum hyoid excursion if possible.  Several frames should be observed to determine the best possible palate (Epstein and Stone, in preparation).
+
+IV.1. Select FILE/SAVE CURRENT CONTOUR AS PALATE (ex: subject.pal). 
+- This file is for future superimposition in EdgeTrak and is in pixels.
+
+IV.2. Select  FILE/EXPORT CONTOURS (ex:subjectname.con)
+- insert scale constant
+- enter frame numbers you want to export (NB: you need at least 2 frames)
+- click OK
+- This text file is for direct comparisons with tongue data and is in mm.
+
+To see an existing palate trace in EdgeTrak, go to FILE/LOAD PALATE.
+
+More Useful Information:
+
+*  The .ts file contains the the four points in the 'green box', the path to the images, the numbers of the jpgs used, and the base set of points stored for each image (default =33).
+
+*  The .con file is a text file that contains a set of xy coordinate points for each contour.  These values are in mm and include interpolated points (default=100), whose number is set by the user.
+
+*  When playing the sequence of images as a "movie",
+- Use Ctrl+f to play the sequence faster.
+- Use Ctrl+s to play the sequence slower.
+
+
+MLS  Sept. 5, 2004
+
+
+
